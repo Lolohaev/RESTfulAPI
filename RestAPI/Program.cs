@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RestAPI.Database;
+
 namespace RestAPI
 {
 	public class Program
@@ -7,6 +10,8 @@ namespace RestAPI
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
+			builder.Services.AddDbContext<StoreContext>(options =>
+			options.UseNpgsql(builder.Configuration.GetConnectionString("StoreContext")));
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
