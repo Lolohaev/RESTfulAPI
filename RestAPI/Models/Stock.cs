@@ -17,34 +17,39 @@
 		public Guid StoreId { get; set; }
 
 		/// <summary>
+		/// Ссылка на магазин
+		/// </summary>
+		public Store? Store { get; set; }
+
+		/// <summary>
 		/// Stock - Backstore
 		/// </summary>
-		public int BackStore { get; set; }
+		public int BackStore { get; set; } = 0;
 
 		/// <summary>
 		/// Stock - Frontstore 
 		/// </summary>
-		public int Frontstore { get; set; }
+		public int Frontstore { get; set; } = 0;
 
 		/// <summary>
 		/// Stock - Shopping Window
 		/// </summary>
-		public int ShoppingWindow { get; set; }
+		public int ShoppingWindow { get; set; } = 0;
 
 		/// <summary>
 		/// Stock Accuracy
 		/// </summary>
-		public double Accuracy { get; set; }
+		public double Accuracy { get; set; } = 0.0;
 
 		/// <summary>
 		/// On-Floor-Availability
 		/// </summary>
-		public double Availability { get; set; }
+		public double Availability { get; set; } = 0.0;
 
 		///	<summary>
 		/// Stock - Mean Age(days)
 		/// </summary>
-		public int MeanAge { get; set; }
+		public int MeanAge { get; set; } = 0;
 
 	}
 }

@@ -10,8 +10,8 @@ namespace RestAPI
 			var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
-			builder.Services.AddDbContext<StoreContext>(options =>
-			options.UseNpgsql(builder.Configuration.GetConnectionString("StoreContext")));
+			builder.Services.AddDbContext<ApplicationContext>(options =>
+				options.UseNpgsql(builder.Configuration.GetConnectionString("StoreContext")));
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,9 +28,6 @@ namespace RestAPI
 			}
 
 			app.UseHttpsRedirection();
-
-			app.UseAuthorization();
-
 
 			app.MapControllers();
 

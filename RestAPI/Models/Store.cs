@@ -1,4 +1,7 @@
-﻿namespace RestAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
+
+namespace RestAPI.Models
 {
 	/// <summary>
 	/// Store model
@@ -14,36 +17,47 @@
 		/// <summary>
 		/// Store Name
 		/// </summary>
-		public string StoreName { get; set; }
+		[Required]
+		public string? StoreName { get; set; }
 
 		/// <summary>
 		/// Country Code
 		/// </summary>
-		public string CountryCode { get; set; }
+		[Required] 
+		public string? CountryCode { get; set; }
 
 		/// <summary>
 		/// Store Email
 		/// </summary>
-		public string StoreEmail { get; set; }
+		[Required]
+		public string? StoreEmail { get; set; }
 
 		/// <summary>
 		/// Store Mgr. First Name
 		/// </summary>
-		public string ManagerFirstName { get; set; }
+		[Required]
+		public string? ManagerFirstName { get; set; }
 
 		/// <summary>
 		/// Store Mgr. Last Name
 		/// </summary>
-		public string ManagerLastName { get; set; }
+		[Required]
+		public string? ManagerLastName { get; set; }
 
 		/// <summary>
 		/// Store Manager Email
 		/// </summary>
-		public string ManagerEmail { get; set; }
+		[Required]
+		public string? ManagerEmail { get; set; }
 
 		/// <summary>
 		/// Category
 		/// </summary>
 		public byte StoreCategory { get; set; }
+
+		/// <summary>
+		/// У каждого магазина имеется какая-то история изменения запасов
+		/// </summary>
+		public Stock? Stock { get; set; }
 	}
 }

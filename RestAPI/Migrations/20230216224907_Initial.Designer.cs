@@ -11,8 +11,8 @@ using RestAPI.Database;
 
 namespace RestAPI.Migrations
 {
-    [DbContext(typeof(StoreContext))]
-    [Migration("20230213214526_Initial")]
+    [DbContext(typeof(ApplicationContext))]
+    [Migration("20230216224907_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,10 +20,45 @@ namespace RestAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.2")
+                .HasAnnotation("ProductVersion", "7.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("RestAPI.Models.Stock", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<double>("Accuracy")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Availability")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("BackStore")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Frontstore")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MeanAge")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ShoppingWindow")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StoreId")
+                        .IsUnique();
+
+                    b.ToTable("Stocks");
+                });
 
             modelBuilder.Entity("RestAPI.Models.Store", b =>
                 {
@@ -61,6 +96,22 @@ namespace RestAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stores");
+                });
+
+            modelBuilder.Entity("RestAPI.Models.Stock", b =>
+                {
+                    b.HasOne("RestAPI.Models.Store", "Store")
+                        .WithOne("Stock")
+                        .HasForeignKey("RestAPI.Models.Stock", "StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Store");
+                });
+
+            modelBuilder.Entity("RestAPI.Models.Store", b =>
+                {
+                    b.Navigation("Stock");
                 });
 #pragma warning restore 612, 618
         }
